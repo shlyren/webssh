@@ -109,12 +109,12 @@ function callback(msg) {
                 closeFromApp = false;
             }
         }else {
-            term.destroy();
             $('.container').show();
+            term.destroy();
+            wssh.term = undefined;
+            wssh.sock = undefined;
         }
 
-        wssh.term = undefined;
-        wssh.sock = undefined;
     };
 }
 
@@ -163,8 +163,6 @@ function sendData(data) {
     }
 
     var value = ctrlAndKeyEcode[data];
-    // console.log(data);
-    // console.log(value);
     if (value != undefined && value != null) {
         sendSocketData(value);
     }
