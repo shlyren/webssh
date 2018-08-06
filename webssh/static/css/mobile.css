@@ -1,0 +1,15 @@
+.row {
+    margin-top: 10px;
+}
+.container {
+    margin-top: 10px;
+}
+.col {
+    margin: 10px 0 0 0 ;
+    padding: 0;
+}
+.form-control {
+    margin-top: -5px;
+}
+
+.terminal {font-size: 10px;}

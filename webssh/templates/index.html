@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="static/img/favicon.png" rel="icon" type="image/png">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="static/css/xterm.min.css" rel="stylesheet" type="text/css"/>
+    <link href="static/css/fullscreen.min.css" rel="stylesheet" type="text/css"/>
+    <title>WebSSH</title>
+    <style>
+  
+      .container {
+          margin-top: 10px;
+      }
+      .table td label{
+        line-height: 29px;
+      }
+      .table td{
+        padding: 0.5em;
+        border-top:  none;
+      }
+    </style>
+
+    
+    <script src="static/js/mobile.js"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <form id="connect" action="" type="post" enctype="multipart/form-data">
+          <table class="table" frame=void rules=none cellspacing=0 align=center>
+            <tbody>
+                <tr>
+                  <td style="width: 70px;"><label for="Hostname">主机名</label></td>
+                  <td><input class="form-control" id="hostname" type="text" name="hostname" placeholder="通常为ip地址" value=""></td>
+                </tr>
+                <tr>
+                  <td><label for="Port">端口</label></td>
+                  <td><input class="form-control" id="port" type="text" name="port" placeholder="通常为22" value="22"></td>
+                </tr>
+                <tr>
+                  <td><label for="Username">用户名</label></td>
+                  <td><input class="form-control" id="username" type="text" name="username" placeholder="登陆名" value=""></td>
+                </tr>
+                <tr>
+                    <td><label for="Password">密码</label></td>
+                    <td><input class="form-control" id="password" type="password" name="password" placeholder="登陆密码" value=""></td>
+                  </tr>
+                <tr>
+                  <td><label for="Username">私钥</label></td>
+                  <td>
+                    <script>
+                      if (isMobile()) {
+                        document.writeln('<textarea style="height: 200px;resize:none;" class="form-control" id="privatekey"  type="text" name="privatekey" value=""></textarea>');
+                      }else {
+                        document.writeln('<input class="form-control" id="privatekey" type="file" name="privatekey">');
+                      }
+                    </script>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5">{% module xsrf_form_html() %}</td>
+                </tr>
+                <tr>
+                  <td colspan="5">如果选择了已加密私钥，则密码将用于解密私钥，否则将用作用户名的密码。</td>
+                </tr>
+            </tbody>
+
+
+        </table>
+          <center style="margin-top: 20px;">
+              <button style="width: 80%; min-width: 70px;" type="submit" id="submit" class="btn btn-primary">连&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接</button>
+          </center>
+      </form>
+
+    </div>
+
+    <div class="container">
+      <div id="status" style="color: red"></div>
+      <div id="terminal"></div>
+    </div>
+
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/xterm.min.js"></script>
+    <script src="static/js/fullscreen.min.js"></script>
+    <script src="static/js/main.js"></script>
+
+    
+    <script src="static/js/nativecall.js"></script>
+    
+  </body>
+</html>
